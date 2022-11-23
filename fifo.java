@@ -1,51 +1,45 @@
 import java.util.*;
-public class fifo
+class fifo
 {
-    public static void fif(int refstr[],int m,int fifo1[],int n)
-    {
-        boolean check=false;
-        int hit=0;
-        int fault=0,count=0;
-        for(int i=0;i<m;i++)
-        {
-            check=false;
-            for(int j=0;j<n;j++)
-            {
-                if(fifo1[j]==refstr[i])
-                {
-                    check=true;
-                    hit++;
-                    break;
-                }
-               
-            } 
-            if(check==false)
-                {
-                    fifo1[count]=refstr[i];
-                    count++;
-                    if(count==n){
-                    count=0;  }
-                    fault++;
-                }
-             
-        }
-        System.out.println("HIT:"+hit);
-        System.out.println("FAULT:"+fault);
-
-    }
-    public static void main(String[] args)
-    {
-        System.out.println("Enter the no of inputs of reference string:");
-        Scanner sc=new Scanner(System.in);
-        int m=sc.nextInt();
-        int refstr[]=new int[m];
-        for(int i=0;i<m;i++)
-        {
-            refstr[i]=sc.nextInt();
-        }
-        System.out.println("Enter the no of frames:");
-        int n=sc.nextInt();
-        int fifo1[]=new int[n];
-        fif(refstr,m,fifo1,n);
-    }
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int r,i,j,f,flag,hit=0,count=0,fault=0;
+		System.out.println("Enter no. of references: ");
+		r=sc.nextInt();
+		System.out.println("Enter no. of frames: ");
+		f=sc.nextInt();
+		int fra[]=new int [f];
+		for(i=0;i<f;i++)
+			fra[i]=-1;
+		int ref[]=new int [r];
+		for(i=0;i<r;i++)
+		{
+			System.out.println("\nEnter of references: ");
+			ref[i]=sc.nextInt();
+		}
+		
+		for(i=0;i<r;i++)
+		{
+			flag=0;
+			for(j=0;j<f;j++)
+			{
+				if(fra[j]==ref[i])
+				{
+					flag=1;
+					hit++;
+					break;
+				}
+			}
+			if(flag==0)
+			{
+				fra[count]=ref[i];
+				fault++;
+				count++;
+				if(count>=f)
+					count=0;
+			}
+		}
+		System.out.println("\nHit = "+hit+"\nFault = "+fault);
+	}	
 }
